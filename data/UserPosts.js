@@ -4,12 +4,16 @@ export const POSTS = [
         imageUrl :'https://m.media-amazon.com/images/M/MV5BODJkZTM3MWYtOTkxNS00YWUxLTg5NjAtOTk4ZWM5MTBmMzAyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_QL75_UY562_CR9,0,380,562_.jpg',
         user : USERS[0].user,
         likes : 189,
-        caption : 'Jujutsu kaisen anime is written by the author gege. Gege when i catch you gege',
+        caption : 'Solo levelling is one of the best anime of 2024',
         profile_picture : USERS[0].image,
         comments : [
             {
                 user : USERS[1].user,
-                comment : 'woww super🔥'
+                comment : 'woww super🔥✨ Will definitely recommend to wath but spoiler alert all your fav characters die😢'
+            },
+            {
+                user: USERS[0].user,
+                comment: 'do you have any other recommendations? comment down',
             }
         ]
     },

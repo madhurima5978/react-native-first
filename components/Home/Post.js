@@ -29,6 +29,8 @@ const Post = ({ post }) => {
         <Likes post={post}/>
       </View>
       <Caption post={post}/>
+      <CommentSection post={post}/>
+      <Comments post={post}/>
     </View>
   );
 };
@@ -105,13 +107,36 @@ const Caption =({post}) => {
         <Text style={{fontWeight:600}}>{post.user} </Text>
         <Text>{post.caption}</Text>
       </Text>
-    </View>
-    
-    
+    </View>   
   )
 }
 
+const CommentSection = ({post}) => {
+  return(
+    <View style={{marginTop:5, marginLeft:15, marginRight:5}}>
+      { !!post.comments.length && (
+      <Text style={{color:'gray'}}>View{' '}
+      {post.comments.length > 1 ? 'all ' : ''}
+      {post.comments.length} {post.comments.length > 1 ? 'comments':'comment'}</Text>
+      )}
+    </View>
+  )
+}
 
+const Comments = ({post}) => {
+  return(
+    <>
+    {post.comments.map((comment, index) => (
+      <View key={index}  style={{marginTop:5, marginLeft:15, marginRight:5}}>
+        <Text>
+          <Text style={{fontWeight: '600'}}>{comment.user} </Text>
+          {comment.comment}
+        </Text>
+      </View>
+    ))}
+    </>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -126,32 +151,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.6,
     borderColor: '#ff8501',
   },
-  postImage: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  postContent: {
-    margin: 10,
-  },
-  likes: {
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  caption: {
-    marginBottom: 10,
-  },
-  commentContainer: {
-    marginLeft: 10,
-  },
-  commentUsername: {
-    fontWeight: 'bold',
-  },
-  commentText: {
-    marginLeft: 10,
-  },
+  
   footerIcon: {
     width: 33,
     height: 33,
