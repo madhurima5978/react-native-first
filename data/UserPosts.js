@@ -20,6 +20,10 @@ export const POSTS = [
             {
                 user: USERS[0].user,
                 comment: 'slay',
+            },
+            {
+                user: USERS[1].user,
+                comment: 'thankyou'
             }
         ]
     },
