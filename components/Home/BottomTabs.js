@@ -16,7 +16,7 @@ export const bottomTabIcons = [
     name: 'profile',
     active: require('../../assets/profile_active.png'),
     active: require('../../assets/profile_inactive.png'),
-  }
+  },
 ]
 
 

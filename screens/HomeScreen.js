@@ -6,7 +6,7 @@ import {POSTS} from '../data/UserPosts'
 import BottomTabs, { bottomTabIcons } from '../components/Home/BottomTabs'
 const HomeScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.screen}>
         <Header/>
         <ScrollView>
           {POSTS.map((post, index) => (
@@ -19,6 +19,9 @@ const HomeScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  screen:{
+    height:'100%',
+  },
     container: {
         flex: 1,
     },

@@ -72,10 +72,12 @@ const PostImage = ({post}) => {
 
 const PostFooter = () => {
   return(
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row',justifyContent:'space-between', width:'250%'}}>
       <View style={styles.leftFooterIconsContainer}>
         <Icon imgStyle = {styles.footerIcon} imgUrl = {postFooterIcons[0].imageUrl}/>
+        <Divider width={1} orientation='vertical' />
         <Icon imgStyle = {styles.footerIcon} imgUrl = {postFooterIcons[1].imageUrl}/>
+        <Divider width={1} orientation='vertical' />
         <Icon imgStyle = {styles.footerIcon} imgUrl = {postFooterIcons[2].imageUrl}/>
       </View>
     </View>

@@ -1,27 +1,20 @@
 import {USERS} from './Users'
 export const POSTS = [
     {
-        imageUrl :'https://m.media-amazon.com/images/M/MV5BODJkZTM3MWYtOTkxNS00YWUxLTg5NjAtOTk4ZWM5MTBmMzAyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_QL75_UY562_CR9,0,380,562_.jpg',
+        imageUrl :'https://content.jdmagicbox.com/comp/medak/s1/9999p8452.8452.170925075458.j3s1/catalogue/jntuh-college-of-engineering-sultanpur-academic-zone-medak-universities-wy4478bduo.jpg',
         user : USERS[0].user,
         likes : 189,
-        caption : 'Solo levelling is one of the best anime of 2024',
+        caption : 'Weather at JNTUHCES is soo satisfying #hostel_life',
         profile_picture : USERS[0].image,
         comments : [
-            {
-                user : USERS[1].user,
-                comment : 'woww super🔥✨ Will definitely recommend to wath but spoiler alert all your fav characters die😢'
-            },
-            {
-                user: USERS[0].user,
-                comment: 'do you have any other recommendations? comment down',
-            }
+            
         ]
     },
     {
-        imageUrl: 'https://qph.cf2.quoracdn.net/main-qimg-ffb2572b558f5022d1985569688c8666-lq',
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyFqI6gwIsNEcyLkF0aTVt-fZWxx2XpmXcCA&usqp=CAU',
         user: USERS[1].user,
         likes: 1000,
-        caption: 'gojo satoru is one of the most famous anime characters mostly known for his beautiful blue eyes',
+        caption: 'Here is the new CSE logo for the fest #Yuga',
         profile_picture: USERS[1].image,
         comments: [
             {
@@ -31,10 +24,10 @@ export const POSTS = [
         ]
     },
     {
-        imageUrl: 'https://assets-global.website-files.com/6461dd519a5f8f48f550b20a/6492adc8e40138d6dc5df2b2_Image-8-1024x576.png',
+        imageUrl: 'https://lh3.googleusercontent.com/proxy/eYG6NGufW17anPcHaGHNJ5ezV9AQhdLc2au6oE7PQJd3xD3uPs1l33uHPeClcO0mH4ujBBAEVUZwhLavL9tJIfqJwVBw',
         user: USERS[0].user,
         likes: 250,
-        caption: 'After effects timeline',
+        caption: 'Honorable Health minister visited our campus',
         profile_picture: USERS[0].image,
         comments: [
             {
