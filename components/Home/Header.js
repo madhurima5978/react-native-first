@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     paddingTop: 5, // Adjust as needed
-    paddingBottom: 20,
   },
   iconContainer: {
     flexDirection: 'row',
@@ -38,15 +37,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 50,
     resizeMode: 'contain',
-    left: -10,
-    top: 20,
+    left: -10
   },
   icon: {
     width: 30,
     height: 30,
-    marginLeft: 10,
     resizeMode: 'contain',
-    top: 20,
+
   },
 })
 

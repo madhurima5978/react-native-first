@@ -57,6 +57,8 @@ const PostHeader = ({ post }) => {
 };
 
 const PostImage = ({post}) => {
+  
+
   return(
   <View style={{
     width: '100%',
@@ -64,7 +66,10 @@ const PostImage = ({post}) => {
   }}>
   <Image
   source={{uri: post.imageUrl}}
-   style={{height: '100%', resizeMode: 'cover'}}
+   style={{width: '100%',
+   height:'100%',
+   resizeMode: 'cover',
+  }}
    />
    </View>
   )
