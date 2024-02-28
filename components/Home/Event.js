@@ -1,15 +1,37 @@
-import { View, Text, StyleSheet, Image} from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList} from 'react-native'
+import React, {useState, useEffect} from 'react'
 import { Divider } from 'react-native-elements';
+import moment from 'moment';
 
-import Stories from './Stories';
+const eventFooterIcons = [
+  {
+      name: 'register',
+      active: require('../../assets/verify.png'),
+      inactive: require('../../assets/verify.png'),
+  },
+  {
+      name: 'reminder',
+      active: require('../../assets/active_bell.png'),
+      inactive: require('../../assets/inactive_bell.png'),
+  },
+
+]
 
 const Event = ({ event }) => {
+
   return (
       <View style={styles.container}>
         <Divider width={1} orientation='vertical' />
         <EventHeader event={event}/>
         <EventImage event={event}/>
+        <EventTitle event={event} />
+        <Eventdesc event={event}/>
+        <EventLocation event={event}/>
+        <View style={{marginHorizontal: 15, marginTop: 10}}>
+          <EventFooter  event={event}/>
+        </View>
+        <RegisteredCandidates event={event}/>
+        
       </View>
   );
 };
@@ -52,6 +74,120 @@ const EventImage = ({event}) => {
     
 }
 
+const EventTitle = ({event}) => {
+    return(
+      <View style={{alignItems: 'center',marginTop: 10,}}> 
+        <Text style={{fontSize: 24,fontWeight: 'bold', textAlign: 'center',}}>{event.eventName}</Text>
+      </View>
+    )
+}
+const Eventdesc = ({event}) => {
+  return(
+    <View style={{alignItems: 'center',marginTop: 10,}}>
+      <Text style={{color: 'gray'}}>{event.desc}</Text>
+    </View>
+  )
+}
+const EventFooter = ({ event }) => {
+  const [isReminderActive, setReminderActive] = useState(false);
+  const toggleReminder = () => {
+    setReminderActive(!isReminderActive);
+  };
+  return (
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <Icon iconStyle={styles.footerIcon} icon={eventFooterIcons[0].inactive} />
+      <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+        <Text>Register</Text>
+        <Text>Registered: {event.registrations}</Text>
+      </View>
+      <Divider width={1} orientation='vertical' />
+      <Icon
+        iconStyle={styles.footerIcon}
+        icon={isReminderActive ? eventFooterIcons[1].active : eventFooterIcons[1].inactive}
+        onPress={toggleReminder}
+      />
+      
+      <Text>Reminder</Text>
+    </View>
+  );
+};
+
+const Icon = ({ iconStyle, icon, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Image style={iconStyle} source={icon} />
+    </TouchableOpacity>
+  );
+};
+const RegisteredCandidates = ({event}) => {
+  return(
+    <>
+    <Text  style={{ fontWeight:'600', marginLeft:15, marginRight:5, fontSize:18}}>Attendees:</Text>
+    {event.attendees.map((event, index) => (
+
+      <View key={index}  style={{ marginLeft:15, marginRight:5}}>
+        
+        <Text>
+          
+          <Text style={{fontWeight: '500', color:'gray'}}>{event.user} </Text>
+        </Text>
+      </View>
+    ))}
+    </>
+  )
+}
+
+const EventLocation =({event}) => {
+  return(
+    <View style={{backgroundColor:'red', flexDirection: 'column', alignItems: 'center', flex: 1, }}>
+      
+        <TouchableOpacity style={{flexDirection:'row', alignItems:'center', justifyContent: 'center', width:'50%', padding:30 }}>
+            <View>
+              <Text style={{color: '#fff', fontWeight:'600'}}>{event.location}</Text>
+            </View>
+            <Divider width={1} orientation='vertical'  style={{ marginHorizontal: 20 }}/>
+            <View>
+              <CountdownTimer eventDate={event.date} eventTime={event.time}/>
+            </View>
+        </TouchableOpacity>
+        
+      
+      
+    </View>
+  )
+}
+
+const CountdownTimer = ({ eventDate, eventTime }) => {
+  const [remainingTime, setRemainingTime] = useState(calculateRemainingTime());
+
+  function calculateRemainingTime() {
+    const eventDateTime = moment(`${eventDate} ${eventTime}`, 'YYYY-MM-DD HH:mm A');
+    const now = moment();
+    const duration = moment.duration(eventDateTime.diff(now));
+    return {
+      days: duration.days(),
+      hours: duration.hours(),
+      minutes: duration.minutes(),
+      seconds: duration.seconds(),
+    };
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainingTime(calculateRemainingTime());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [eventDate, eventTime]);
+
+  return (
+    <View style={{backgroundColor: 'white', borderRadius:30}}>
+      <Text style={{color: '#000', fontWeight:'600', margin:10}}>{remainingTime.days}d {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s</Text>
+    </View>
+  );
+};
+
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
@@ -66,5 +202,15 @@ const styles = StyleSheet.create({
     borderWidth: 1.6,
     borderColor: '#ff8501',
   },
+  footerIcon: {
+    width: 33,
+    height: 33,
+  },
+  leftFooterIconsContainer: {
+    flexDirection: 'row',
+    width: '40%',
+    justifyContent: 'space-between',
+  },
 })
+
 export default Event;

@@ -8,7 +8,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.screen}>
         <Header/>
-        <ScrollView>
+        <ScrollView style={styles.container}>
           {POSTS.map((post, index) => (
             <Post key={index} post={post} />
           ))}
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
     container: {
         flex: 1,
+        marginBottom:30,
     },
     post: {
       marginBottom: 16,

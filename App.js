@@ -6,6 +6,6 @@ import EventScreen from './screens/EventScreen';
 
 export default function App() {
   return (
-      <HomeScreen/>
+      <EventScreen/>
   );
 }
