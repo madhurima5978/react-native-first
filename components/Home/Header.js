@@ -1,7 +1,7 @@
 import { SafeAreaView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Header = () => {
+const Header = ({navigation}) => {
   return (
     <View style ={styles.container}>
       <TouchableOpacity>

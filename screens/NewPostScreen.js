@@ -3,10 +3,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 import AddNewPost from '../components/newPost/AddNewPost'
 import HomeScreen from './HomeScreen'
-const NewPostScreen = () => {
+const NewPostScreen = ({navigation}) => {
   return (
     <SafeAreaView>
-        <AddNewPost/>
+        <AddNewPost navigation={navigation}/>
     </SafeAreaView>
   )
 }

@@ -4,7 +4,7 @@ import Header from '../components/Home/Header'
 import Post from '../components/Home/Post'
 import {POSTS} from '../data/UserPosts'
 import BottomTabs, { bottomTabIcons } from '../components/Home/BottomTabs'
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.screen}>
         <Header/>
@@ -13,7 +13,7 @@ const HomeScreen = () => {
             <Post key={index} post={post} />
           ))}
       </ScrollView>
-      <BottomTabs icons={bottomTabIcons}/>
+      <BottomTabs icons={bottomTabIcons}  navigation={navigation}/>
     </SafeAreaView>
   )
 }

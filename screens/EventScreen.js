@@ -1,20 +1,22 @@
 import { View, Text,ScrollView,StyleSheet } from 'react-native'
 import React from 'react'
-import BottomTabs, {bottomTabIcons} from '../components/Home/BottomTabs'
+import BottomTabs, {bottomTabIcons} from '../components/Event/BottomTabs'
 import Stories from '../components/Home/Stories'
-import Event from '../components/Home/Event'
+import Event from '../components/Event/Event'
 import {EVENTS} from '../data/UserEvents'
 import { SafeAreaView } from 'react-native-safe-area-context'
-const EventScreen = () => {
+
+const EventScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.screen}>
+      
       <Stories/>
       <ScrollView style={styles.container}>
           {EVENTS.map((event, index) => (
             <Event key={index} event={event} />
           ))}
       </ScrollView>
-      <BottomTabs icons={bottomTabIcons}/>
+      <BottomTabs icons={bottomTabIcons} navigation={navigation}/>
     </SafeAreaView>
   )
 }

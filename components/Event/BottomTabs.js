@@ -27,7 +27,7 @@ export const bottomTabIcons = [
 
 const BottomTabs = ({icons, navigation}) => {
 
-  const [activeTab, setActiveTab] = useState('Home')
+  const [activeTab, setActiveTab] = useState('Event')
 
   
   return(
@@ -35,7 +35,7 @@ const BottomTabs = ({icons, navigation}) => {
     <Divider width={1} orientation='vertical' />
     <View style={styles.container}>
       {/* Home Button */}
-      <TouchableOpacity onPress={() => setActiveTab('Home')}>
+      <TouchableOpacity onPress={() => {setActiveTab('Home');navigation.goBack()}}>
         <Image
           source={activeTab === 'Home' ? bottomTabIcons[0].active : bottomTabIcons[0].inactive}
           style={styles.icon}
@@ -43,7 +43,7 @@ const BottomTabs = ({icons, navigation}) => {
       </TouchableOpacity>
 
       {/* Event Button */}
-      <TouchableOpacity onPress={() => {setActiveTab('Event'); navigation.push('EventScreen')}}>
+      <TouchableOpacity onPress={() => setActiveTab('Event') }>
         <Image
           source={activeTab === 'Event' ? bottomTabIcons[1].active : bottomTabIcons[1].inactive}
           style={styles.icon}
@@ -51,7 +51,7 @@ const BottomTabs = ({icons, navigation}) => {
       </TouchableOpacity>
 
       {/* Add Post Button */}
-      <TouchableOpacity onPress={() => {setActiveTab('add_post'); navigation.push('NewPostScreen')}}>
+      <TouchableOpacity onPress={() => {setActiveTab('add_post');navigation.push('NewPostScreen')}}>
         <Image
           source={activeTab === 'add_post' ? bottomTabIcons[2].active : bottomTabIcons[2].inactive}
           style={styles.icon}
