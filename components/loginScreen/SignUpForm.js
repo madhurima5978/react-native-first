@@ -30,18 +30,18 @@ return (
                 style={[
                     styles.inputField,
                     {
-                        borderColor: values.rollnumber.length < 1 || values.username.length == 7 
+                        borderColor: values.rollnumber.length < 1 || values.rollnumber.length == 7 
                             ? '#ccc' 
                             : '#FF2701',
                     },
                 ]}>
             <TextInput
                 placeholderTextColor='#444'
-                placeholder='Roll Number'
-                autoCapitalize='none'
-                textContentType='rollnumber'
-                onChangeText={handleChange('rollnumber')}
-                onBlur={handleBlur('rollnumber')}
+                placeholder="Enter Rollnumber"
+                textContentType="telephoneNumber"
+                onChange={handleChange('telephoneNumber')}
+                onBlur={handleBlur('telephoneNumber')}
+                autoFocus={true}
                 value={values.rollnumber}
             />
             </View>

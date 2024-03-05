@@ -1,16 +1,15 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
+import LoginForm from '../components/loginScreen/LoginForm'
 
-import SignUpForm from '../components/signUpScreen/SignUpForm'
-
-const SignUpScreen = () => {
+const LoginScreen = () => {
   return (
-    <ScrollView style= {styles.container}>
+    <View style= {styles.container}>
         <View style = {styles.logocontainer}>
             <Image style = {styles.image}source={require('..//assets//cc.png')}/>
         </View>
-        <SignUpForm/>
-    </ScrollView>
+        <LoginForm/>
+    </View>
   )
 }
 
@@ -32,4 +31,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignUpScreen
+export default LoginScreen

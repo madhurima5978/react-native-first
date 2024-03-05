@@ -11,6 +11,7 @@ import SettingsScreen from './screens/SettingsScreen';
 import LiveTab from './components/Event/LiveTab';
 import UpcomingTab from './components/Event/UpcomingTab';
 import PastTab from './components/Event/PastTab';
+import RoomScreen from './screens/RoomScreen';
 
 const Stack = createStackNavigator();
 
@@ -30,7 +31,7 @@ const SignedInStack = () => {
         <Stack.Screen name='EventScreen' component={EventScreen}/>
         <Stack.Screen name='UserProfileScreen' component={UserProfileScreen}/>
         <Stack.Screen name='SettingsScreen' component={SettingsScreen}/>
-        
+        <Stack.Screen name='RoomScreen' component={RoomScreen}/>
       </Stack.Navigator>
       <BottomTabs icons={bottomTabIcons} />
       

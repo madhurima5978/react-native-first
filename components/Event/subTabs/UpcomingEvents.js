@@ -11,8 +11,8 @@ const eventFooterIcons = [
   },
   {
       name: 'reminder',
-      active: require('../../../assets/active_bell.png'),
-      inactive: require('../../../assets/inactive_bell.png'),
+      active: require('../../../assets/bell_active.png'),
+      inactive: require('../../../assets/bell_inactive.png'),
   },
 
 ]
@@ -100,7 +100,9 @@ const EventFooter = ({ event }) => {
     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
       <Icon iconStyle={styles.footerIcon} icon={eventFooterIcons[0].inactive} />
       <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-        <Text>Register</Text>
+        <TouchableOpacity style={{backgroundColor:'#10C000', padding:5, width:'100%', alignItems:'center', borderRadius: 5}}>
+          <Text>Register</Text>
+        </TouchableOpacity>
         <Text>Registered: {event.registrations}</Text>
       </View>
       <Divider width={1} orientation='vertical' />

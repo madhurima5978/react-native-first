@@ -7,13 +7,11 @@ import {EVENTS} from '../../data/UserEvents'
 const UpcomingTab = () => {
     return(
       <SafeAreaView style={styles.screen}>
-    
     <ScrollView style={styles.container}>
         {EVENTS.map((event, index) => (
           <UpcomingEvents key={index} event={event} />
         ))}
     </ScrollView>
-    
   </SafeAreaView>
     )
   }

@@ -20,6 +20,11 @@ export const bottomTabIcons = [
     inactive: require('../../assets/add.png'),
   },
   {
+    name: 'Room',
+    active: require('../../assets/room_active.png'),
+    inactive: require('../../assets/room_inactive.png'),
+  },
+  {
     name: 'UserProfile',
     active: require('../../assets/profile_active.png'),
     inactive: require('../../assets/profile_inactive.png'),
@@ -68,11 +73,18 @@ const BottomTabs = ({ icons }) => {
             style={styles.icon}
           />
         </TouchableOpacity>
+        {/*room screen*/}
+        <TouchableOpacity onPress={() => handleTabPress('Room')}>
+          <Image
+            source={activeTab === 'Room' ? bottomTabIcons[3].active : bottomTabIcons[3].inactive}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
 
         {/* Profile Button */}
         <TouchableOpacity onPress={() => handleTabPress('UserProfile')}>
           <Image
-            source={activeTab === 'profile' ? bottomTabIcons[3].active : bottomTabIcons[3].inactive}
+            source={activeTab === 'UserProfile' ? bottomTabIcons[4].active : bottomTabIcons[4].inactive}
             style={styles.icon}
           />
         </TouchableOpacity>
