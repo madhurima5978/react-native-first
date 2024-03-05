@@ -7,13 +7,13 @@ import BottomTabs, { bottomTabIcons } from '../components/Home/BottomTabs'
 const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.screen}>
-        <Header/>
+        <Header  navigation={navigation}/>
         <ScrollView style={styles.container}>
           {POSTS.map((post, index) => (
             <Post key={index} post={post} />
           ))}
       </ScrollView>
-      <BottomTabs icons={bottomTabIcons}  navigation={navigation}/>
+      <BottomTabs icons={bottomTabIcons}/>
     </SafeAreaView>
   )
 }

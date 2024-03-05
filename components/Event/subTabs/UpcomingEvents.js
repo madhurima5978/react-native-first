@@ -6,18 +6,18 @@ import moment from 'moment';
 const eventFooterIcons = [
   {
       name: 'register',
-      active: require('../../assets/verify.png'),
-      inactive: require('../../assets/verify.png'),
+      active: require('../../../assets/verify.png'),
+      inactive: require('../../../assets/verify.png'),
   },
   {
       name: 'reminder',
-      active: require('../../assets/active_bell.png'),
-      inactive: require('../../assets/inactive_bell.png'),
+      active: require('../../../assets/active_bell.png'),
+      inactive: require('../../../assets/inactive_bell.png'),
   },
 
 ]
 
-const Event = ({ event }) => {
+const UpcomingEvents = ({ event }) => {
 
   return (
       <View style={styles.container}>
@@ -43,6 +43,9 @@ const EventHeader = ({ event }) => {
       justifyContent: 'space-between',
       //margin: 5,
       alignItems: 'center',
+      backgroundColor:'white',
+      padding:5,
+      
     }}>
 
     
@@ -213,4 +216,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Event;
+export default UpcomingEvents;

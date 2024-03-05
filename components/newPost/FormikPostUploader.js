@@ -1,6 +1,6 @@
 import { View, Text, Image, TextInput } from 'react-native'
 import React, { useState } from 'react'
-
+import validUrl from 'valid-url'
 import * as Yup from 'yup'
 import {Formik} from 'formik'
 import { Button, Divider } from 'react-native-elements'
@@ -28,7 +28,7 @@ const FormikPostUploader = ({navigation}) => {
                 <>
                 <View style={{
                      flexDirection:'row',marginBottom:20}}>
-                    <Image source={{uri:thumbnailUrl? thumbnailUrl: PLACEHOLDER_IMG}} 
+                    <Image source={{uri: validUrl.isUri(thumbnailUrl)? thumbnailUrl: PLACEHOLDER_IMG}} 
                     style={{width: 100, height:100}}/>
                 
             <View style={{flex: 1,padding:5}}>

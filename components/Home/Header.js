@@ -1,5 +1,6 @@
 import { SafeAreaView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const Header = ({navigation}) => {
   return (
@@ -11,9 +12,9 @@ const Header = ({navigation}) => {
       />
       </TouchableOpacity>
       <View style = {styles.iconContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.push('SettingsScreen')}>
           <Image style = {styles.icon}
-      source={require('../../assets/msg.jpg')}>
+      source={require('../../assets/Bell_settings.png')}>
 
           </Image>
         </TouchableOpacity>
@@ -27,8 +28,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    width: '100%',
-    paddingTop: 5, // Adjust as needed
+    width: '98%',
+    paddingTop: 20,
+     // Adjust as needed
   },
   iconContainer: {
     flexDirection: 'row',
@@ -40,8 +42,8 @@ const styles = StyleSheet.create({
     left: -10
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
 
   },

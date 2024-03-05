@@ -1,33 +1,30 @@
-import { View, Text,ScrollView,StyleSheet } from 'react-native'
-import React from 'react'
-import BottomTabs, {bottomTabIcons} from '../components/Event/BottomTabs'
-import Stories from '../components/Home/Stories'
-import Event from '../components/Event/Event'
-import {EVENTS} from '../data/UserEvents'
+import React from 'react';
+import {StyleSheet } from 'react-native'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import LiveTab from '../components/Event/LiveTab';
+import UpcomingTab from '../components/Event/UpcomingTab';
+import PastTab from '../components/Event/PastTab';
+import TopTabs from '../components/Event/TopTabs';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const EventScreen = ({navigation}) => {
-  return (
-    <SafeAreaView style={styles.screen}>
-      
-      <Stories/>
-      <ScrollView style={styles.container}>
-          {EVENTS.map((event, index) => (
-            <Event key={index} event={event} />
-          ))}
-      </ScrollView>
-      <BottomTabs icons={bottomTabIcons} navigation={navigation}/>
-    </SafeAreaView>
-  )
-}
-const styles = StyleSheet.create({
-  screen:{
-    height:'100%',
+const Tab = createMaterialTopTabNavigator();
 
-  },
-  container: {
-    marginBottom:30,
-  }
+const EventScreen = () => {
+  return (
+    
+      <Tab.Navigator style={styles.container}>
+        <Tab.Screen name="Live" component={LiveTab} />
+        <Tab.Screen name="Upcoming" component={UpcomingTab} />
+        <Tab.Screen name="Past" component={PastTab} />
+      </Tab.Navigator>
+    
+  );
+};
+
+const styles = StyleSheet.create({
+    container:{
+      marginTop: 20,
+    }
 })
 
-export default EventScreen
+export default EventScreen;

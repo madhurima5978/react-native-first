@@ -2,6 +2,7 @@ import { View, Text, StyleSheet,Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Divider } from 'react-native-elements';
 import FormikPostUploader from './FormikPostUploader';
+import 'react-native-gesture-handler';
 
 const AddNewPost = ({navigation}) => {
     return(
