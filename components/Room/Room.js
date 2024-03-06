@@ -30,8 +30,9 @@ const Stories = () => {
           <View style={styles.overlay} />
         </TouchableWithoutFeedback>
         <View style={styles.modalContainer}>
-          <Text>Join Room</Text>
-          <Button title="Close" onPress={closeModal} />
+          <TouchableOpacity style={{backgroundColor:'#4bcffa',borderRadius:20, alignItems:'center',padding:10}}>
+          <Text style={{color:'white'}}>Join Room</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </View>
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    
   },
   modalContainer: {
     height: '50%', // Adjust as needed
