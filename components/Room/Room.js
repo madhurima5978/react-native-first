@@ -14,7 +14,10 @@ const Stories = () => {
   };
 
   return (
+    <View>
+      <Text style={{fontWeight:'800',padding:20,fontSize:20 }}>Let's Talk</Text>
     <View style={styles.container}>
+      
       {USERS.map((userObj, index) => (
         <TouchableOpacity key={userObj.user} style={styles.userContainer} onPress={toggleModal}>
           <Image
@@ -35,6 +38,7 @@ const Stories = () => {
           </TouchableOpacity>
         </View>
       </Modal>
+    </View>
     </View>
   );
 };
