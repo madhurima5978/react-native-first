@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-elements';
-
+import {firebase, db} from '../../firebase';
 const postFooterIcons = [
   {
     name: 'Like',
     imageUrl: require('../../assets/heart.png'),
+    likedImageUrl: require('../../assets/heart_fill.png')
   },
   {
     name: 'comment',
@@ -19,13 +20,39 @@ const postFooterIcons = [
 ];
 
 const Post = ({ post }) => {
+
+  const handleLike = post => {
+    const currentLikeStatus = !post.likes_by_users.includes(
+      firebase.auth().currentUser.email
+    )
+
+    db.collection('users')
+    .doc(post.owner_email)
+    .collection('posts')
+    .doc(post.id)
+    .update({
+      likes_by_users: currentLikeStatus 
+      ? firebase.firestore.FieldValue.arrayUnion(
+          firebase.auth().currentUser.email
+        )
+        : firebase.firestore.FieldValue.arrayRemove(
+          firebase.auth().currentUser.email
+        ),
+    }).then(() => {
+      console.log('liked Succesfully')
+    })
+    .catch(error => {
+      console.log('Error liking', error)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <Divider width={1} orientation='vertical' />
       <PostHeader post={post} />
       <PostImage post={post} />
       <View style={{marginHorizontal: 15, marginTop: 10}}>
-        <PostFooter/>
+        <PostFooter handleLike={handleLike} post={post}/>
         <Likes post={post}/>
       </View>
       <Caption post={post}/>
@@ -34,6 +61,8 @@ const Post = ({ post }) => {
     </View>
   );
 };
+
+
 
 const PostHeader = ({ post }) => {
   return (
@@ -75,11 +104,14 @@ const PostImage = ({post}) => {
   )
 }
 
-const PostFooter = () => {
+const PostFooter = ({handleLike, post}) => {
   return(
     <View style={{flexDirection: 'row',justifyContent:'space-between', width:'250%'}}>
       <View style={styles.leftFooterIconsContainer}>
-        <Icon imgStyle = {styles.footerIcon} imgUrl = {postFooterIcons[0].imageUrl}/>
+        <TouchableOpacity onPress={() => handleLike(post)}>
+          <Image style={styles.footerIcon} source={post.likes_by_users.includes(firebase.auth().currentUser.email
+            ) ? postFooterIcons[0].likedImageUrl : postFooterIcons[0].imageUrl}/>
+        </TouchableOpacity>
         <Divider width={1} orientation='vertical' />
         <Icon imgStyle = {styles.footerIcon} imgUrl = {postFooterIcons[1].imageUrl}/>
         <Divider width={1} orientation='vertical' />
@@ -95,17 +127,18 @@ const Icon = ({imgStyle, imgUrl}) => {
     </TouchableOpacity>
   )
 }
+const Likes = ({ post }) => {
+  // Check if post.likes is defined before accessing it
+  const likesCount =  post.likes_by_users.length.toLocaleString('en')
 
-const Likes = ({post}) => {
-  return(
-    <View style={{flexDirection: 'row', marginTop: 4}}>
-      <Text style={{fontWeight:'600'}}>
-        {post.likes.toLocaleString('en')} Likes
+  return (
+    <View style={{ flexDirection: 'row', marginTop: 4 }}>
+      <Text style={{ fontWeight: '600' }}>
+        {likesCount} Likes
       </Text>
-
     </View>
-  )
-}
+  );
+};
 
 const Caption =({post}) => {
   return(
@@ -118,32 +151,40 @@ const Caption =({post}) => {
   )
 }
 
-const CommentSection = ({post}) => {
-  return(
-    <View style={{marginTop:5, marginLeft:15, marginRight:5}}>
-      { !!post.comments.length && (
-      <Text style={{color:'gray'}}>View{' '}
-      {post.comments.length > 1 ? 'all ' : ''}
-      {post.comments.length} {post.comments.length > 1 ? 'comments':'comment'}</Text>
+const CommentSection = ({ post }) => {
+  // Check if post.comments is undefined or null
+  if (!post.comments) {
+    return null;
+  }
+
+  return (
+    <View style={{ marginTop: 5, marginLeft: 15, marginRight: 5 }}>
+      {post.comments.length > 0 && (
+        <Text style={{ color: 'gray' }}>
+          View{' '}
+          {post.comments.length > 1 ? 'all ' : ''}
+          {post.comments.length} {post.comments.length > 1 ? 'comments' : 'comment'}
+        </Text>
       )}
     </View>
-  )
-}
+  );
+};
 
-const Comments = ({post}) => {
-  return(
+
+const Comments = ({ post }) => {
+  return (
     <>
-    {post.comments.map((comment, index) => (
-      <View key={index}  style={{marginTop:5, marginLeft:15, marginRight:5}}>
-        <Text>
-          <Text style={{fontWeight: '600'}}>{comment.user} </Text>
-          {comment.comment}
-        </Text>
-      </View>
-    ))}
+      {post.comments && post.comments.map((comment, index) => (
+        <View key={index} style={{ marginTop: 5, marginLeft: 15, marginRight: 5 }}>
+          <Text>
+            <Text style={{ fontWeight: '600' }}>{comment.user} </Text>
+            {comment.comment}
+          </Text>
+        </View>
+      ))}
     </>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -31,7 +31,11 @@ const Stories = () => {
         </TouchableWithoutFeedback>
         <View style={styles.modalContainer}>
           <Text>Join Room</Text>
-          <Button title="Close" onPress={closeModal} />
+          <View style={{ backgroundColor: 'turquoise', borderRadius: 30, marginTop: 10 }}>
+              <TouchableOpacity  onPress={closeModal} style={{backgroundColor:'turquoise', borderRadius: 30, padding:5, justifyContent:'center', alignItems:'center'}}>
+                <Text style={{color:'white'}}>Close</Text>
+              </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   },
   modalContainer: {
     height: '50%', // Adjust as needed
@@ -59,6 +63,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
+    
     ...Platform.select({
       ios: {
         shadowColor: '#000',

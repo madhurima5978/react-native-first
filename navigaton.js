@@ -12,14 +12,38 @@ import LiveTab from './components/Event/LiveTab';
 import UpcomingTab from './components/Event/UpcomingTab';
 import PastTab from './components/Event/PastTab';
 import RoomScreen from './screens/RoomScreen';
-
+import LoginScreen from './screens/LoginScreen';
+import SignUpScreen from './screens/SignUpScreen';
 const Stack = createStackNavigator();
 
 const screenOptions = {
   headerShown: false,
 };
 
-const SignedInStack = () => {
+export const SignedOutStack = () => {
+  
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+       initialRouteName='LoginScreen' 
+      screenOptions={screenOptions}>
+        <Stack.Screen name='LoginScreen' component={LoginScreen} />
+        <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+        <Stack.Screen name='EventScreen' component={EventScreen}/>
+        
+        <Stack.Screen name='SettingsScreen' component={SettingsScreen}/>
+        
+      </Stack.Navigator>
+      
+      
+    </NavigationContainer>
+  );
+};
+
+
+
+
+export const SignedInStack = () => {
   
   return (
     <NavigationContainer>
@@ -39,4 +63,3 @@ const SignedInStack = () => {
   );
 };
 
-export default SignedInStack;

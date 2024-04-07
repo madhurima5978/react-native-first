@@ -1,11 +1,11 @@
-import { View, Text, TextInput, Button, Pressable, Touchable, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Button, Pressable, Touchable, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import React, {useState} from 'react'
 
 import {Formik} from 'formik'
 import * as Yup from 'yup'
 import Validator from 'email-validator'
-
-const LoginForm = () => {
+import {firebase} from '../../firebase'
+const LoginForm = ({navigation}) => {
     const LoginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
         password: Yup.string()
@@ -13,12 +13,25 @@ const LoginForm = () => {
             .min(8, 'Your Password has to have a least 8 characters'),
     })
 
+const onLogin = async (email, password) => {
+    try{
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+        console.log('Firebase Login successful', email, password)
+        
+    } catch(error){
+        Alert.alert(
+           error.message
+        );
+                
+    }
+}
+
   return (
     <View style={styles.wrapper}>
         <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={values => {
-            console.log(values)
+            onLogin(values.email, values.password)
         }}
         validationSchema={LoginFormSchema}
         validateOnMount={true}
@@ -81,7 +94,7 @@ const LoginForm = () => {
         </Pressable>
         <View style = {styles.signUpContainer}>
             <Text>Didn't register yet?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('SignUpScreen')}>
                 <Text style = {{color : '#FF2701'}}>Register</Text>
             </TouchableOpacity>
         </View>

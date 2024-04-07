@@ -1,12 +1,13 @@
 import React from "react";
+import { Alert } from 'react-native';
 import {
     View, TextInput, StyleSheet, Text, TouchableOpacity, Pressable,
 } from 'react-native'
 import {Formik} from 'formik'
 import * as Yup from 'yup'
 import Validation from 'email-validator'
-
-const SignUpForm = () => {
+import {firebase, db} from "../../firebase";
+const SignUpForm = ({navigation}) => {
     const SignupFormSchema = Yup.object().shape({
         rollnumber: Yup.string().required().min(7, 'Roll number is required'),
         email: Yup.string().email().required('An Email is required'),
@@ -14,12 +15,29 @@ const SignUpForm = () => {
         password: Yup.string().required().min(8, 'Your Password has to have at least 8 characters')
     })
 
+    const onSignup = async( email,password, username, rollnumber) => {
+        try{
+            const authUser = await firebase.auth().createUserWithEmailAndPassword(email, password)
+            console.log("Created user succesfully",email,password)
+
+            db.collection('users')
+            .doc(authUser.user.email)
+            .set({
+                owner_uid: authUser.user.uid,
+                username: username,
+                email: authUser.user.email,
+                rollnumber: rollnumber,
+             })
+        }catch(error){
+            Alert.alert('OMG', error.message)
+        }
+    }
 return (
     <View style={styles.wrapper}>
         <Formik
         initialValues={{rollnumber: '',email: '', username: '', password: ''}}
         onSubmit={values => {
-            console.log(values)
+            onSignup( values.email, values.password, values.username, values.rollnumber)
         }}
         validationSchema={SignupFormSchema}
         validateOnMount={true}
@@ -30,18 +48,18 @@ return (
                 style={[
                     styles.inputField,
                     {
-                        borderColor: values.rollnumber.length < 1 || values.rollnumber.length == 7 
+                        borderColor: values.rollnumber.length < 1 || values.username.length == 7 
                             ? '#ccc' 
                             : '#FF2701',
                     },
                 ]}>
             <TextInput
                 placeholderTextColor='#444'
-                placeholder="Enter Rollnumber"
-                textContentType="telephoneNumber"
-                onChange={handleChange('telephoneNumber')}
-                onBlur={handleBlur('telephoneNumber')}
-                autoFocus={true}
+                placeholder='Roll Number'
+                autoCapitalize='none'
+                textContentType='none'
+                onChangeText={handleChange('rollnumber')}
+                onBlur={handleBlur('rollnumber')}
                 value={values.rollnumber}
             />
             </View>
@@ -127,7 +145,7 @@ return (
 
         <View style = {styles.logInContainer}>
             <Text>Already have an account?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen') }>
                 <Text style = {{color : '#FF2701'}}>Log In</Text>
             </TouchableOpacity>
         </View>

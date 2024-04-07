@@ -1,15 +1,31 @@
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import Header from '../components/Home/Header'
 import Post from '../components/Home/Post'
 import {POSTS} from '../data/UserPosts'
 import BottomTabs, { bottomTabIcons } from '../components/Home/BottomTabs'
+import {db} from "../firebase"
+
 const HomeScreen = ({navigation}) => {
+
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    db.collectionGroup('posts')
+    
+    .onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(post =>
+        ({
+          id: post.id, ...post.data()
+        }) 
+        ))
+    })
+  },[])
   return (
     <SafeAreaView style={styles.screen}>
         <Header  navigation={navigation}/>
         <ScrollView style={styles.container}>
-          {POSTS.map((post, index) => (
+          {posts.map((post, index) => (
             <Post key={index} post={post} />
           ))}
       </ScrollView>
