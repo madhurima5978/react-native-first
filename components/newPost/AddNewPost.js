@@ -30,46 +30,6 @@ const Header = ({navigation}) => {
   )
 }
 
-const UploadImage = () => {
-    const [image, setImage] = useState(null);
-  
-    // Request permission to access camera roll
-    const getPermissionAsync = async () => {
-      if (Constants.platform?.ios) {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          Alert.alert('Sorry, we need camera roll permissions to make this work!');
-        }
-      }
-    };
-  
-    // Open image picker
-    const pickImage = async () => {
-      await getPermissionAsync();
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-  
-      if (!result.cancelled) {
-        setImage(result.uri);
-      }
-    };
-  
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <TouchableOpacity onPress={pickImage}>
-            <Text>
-            Pick an image from camera roll
-            </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: 10

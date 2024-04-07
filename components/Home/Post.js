@@ -21,6 +21,17 @@ const postFooterIcons = [
 
 const Post = ({ post }) => {
 
+  const [lastTap, setLastTap] = useState(null);
+
+  const handleDoubleTap = post => {
+    const now = Date.now();
+    if (lastTap && now - lastTap < 300) {
+      handleLike(post);
+    } else {
+      setLastTap(now);
+    }
+  };
+
   const handleLike = post => {
     const currentLikeStatus = !post.likes_by_users.includes(
       firebase.auth().currentUser.email
@@ -50,7 +61,7 @@ const Post = ({ post }) => {
     <View style={styles.container}>
       <Divider width={1} orientation='vertical' />
       <PostHeader post={post} />
-      <PostImage post={post} />
+      <PostImage post={post} handleDoubleTap={handleDoubleTap} />
       <View style={{marginHorizontal: 15, marginTop: 10}}>
         <PostFooter handleLike={handleLike} post={post}/>
         <Likes post={post}/>
@@ -85,7 +96,7 @@ const PostHeader = ({ post }) => {
   );
 };
 
-const PostImage = ({post}) => {
+const PostImage = ({post, handleDoubleTap}) => {
   
 
   return(
@@ -93,13 +104,16 @@ const PostImage = ({post}) => {
     width: '100%',
     height: 500,
   }}>
-  <Image
+    <TouchableOpacity onPress={()=>handleDoubleTap(post)}>
+      
+  <Image 
   source={{uri: post.imageUrl}}
    style={{width: '100%',
    height:'100%',
    resizeMode: 'cover',
   }}
    />
+   </TouchableOpacity>
    </View>
   )
 }

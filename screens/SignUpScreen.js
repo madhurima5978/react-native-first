@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import React from 'react'
-import LoginForm from '../components/loginScreen/SignUpForm'
+
 import SignUpForm from '../components/loginScreen/SignUpForm'
 
-const LoginScreen = ({navigation}) => {
+const SignUpScreen = ({navigation}) => {
   return (
     <ScrollView style= {styles.container}>
         <View style = {styles.logocontainer}>

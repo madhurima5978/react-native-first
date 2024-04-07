@@ -145,11 +145,7 @@ return (
 
         <View style = {styles.logInContainer}>
             <Text>Already have an account?</Text>
-<<<<<<< HEAD
             <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen') }>
-=======
-            <TouchableOpacity onPress={()=>navigation.push('LoginScreen')}>
->>>>>>> 791b0335931b87d424b1625ff4407ee099b84a0c
                 <Text style = {{color : '#FF2701'}}>Log In</Text>
             </TouchableOpacity>
         </View>
