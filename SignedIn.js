@@ -12,50 +12,33 @@ import LiveTab from './components/Event/LiveTab';
 import UpcomingTab from './components/Event/UpcomingTab';
 import PastTab from './components/Event/PastTab';
 import RoomScreen from './screens/RoomScreen';
-import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import LoginScreen from './screens/LoginScreen';
+
 const Stack = createStackNavigator();
 
 const screenOptions = {
   headerShown: false,
 };
 
-export const SignedOutStack = () => {
+const SignedInStack = () => {
   
   return (
     <NavigationContainer>
       <Stack.Navigator
-       initialRouteName='LoginScreen' 
+       initialRouteName='HomeScreen' 
       screenOptions={screenOptions}>
-        <Stack.Screen name='LoginScreen' component={LoginScreen} />
-        <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+        <Stack.Screen name='HomeScreen' component={HomeScreen} />
+        <Stack.Screen name='NewPostScreen' component={NewPostScreen} />
         <Stack.Screen name='EventScreen' component={EventScreen}/>
-        
+        <Stack.Screen name='UserProfileScreen' component={UserProfileScreen}/>
         <Stack.Screen name='SettingsScreen' component={SettingsScreen}/>
-        
+        <Stack.Screen name='RoomScreen' component={RoomScreen}/>
       </Stack.Navigator>
-      
+      <BottomTabs icons={bottomTabIcons} />
       
     </NavigationContainer>
   );
 };
 
-
-
-
-export const SignedInStack = () => {
-  
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-       initialRouteName='SignUpScreen' 
-      screenOptions={screenOptions}>
-        <Stack.Screen name='SignUpScreen' component={SignUpScreen}/>
-        <Stack.Screen name='LoginScreen' component={LoginScreen}/>
-      </Stack.Navigator>
-      
-      
-    </NavigationContainer>
-  );
-};
-
+export default SignedInStack;

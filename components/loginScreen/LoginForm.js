@@ -94,7 +94,11 @@ const onLogin = async (email, password) => {
         </Pressable>
         <View style = {styles.signUpContainer}>
             <Text>Didn't register yet?</Text>
+<<<<<<< HEAD
             <TouchableOpacity onPress={()=>navigation.navigate('SignUpScreen')}>
+=======
+            <TouchableOpacity onPress={()=>navigation.push('SignUpScreen')}>
+>>>>>>> 791b0335931b87d424b1625ff4407ee099b84a0c
                 <Text style = {{color : '#FF2701'}}>Register</Text>
             </TouchableOpacity>
         </View>

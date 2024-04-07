@@ -9,6 +9,10 @@ import LoginScreen from './screens/LoginScreen';
 import SignedOutStack from './navigaton';
 import AuthNavigation from './AuthNavigation';
 
+import SignUpScreen from './screens/SignUpScreen'
+import LoginScreen from './screens/SignUpScreen';
+import SignedOutStack from './navigaton';
+import SignedInStack from './SignedIn';
 export default function App() {
   return (
     <AuthNavigation/>
