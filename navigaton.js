@@ -42,7 +42,7 @@ export const SignedInStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-       initialRouteName='HomeScreen' 
+       initialRouteName='RoomScreen' 
       screenOptions={screenOptions}>
         <Stack.Screen name='HomeScreen' component={HomeScreen} />
         <Stack.Screen name='NewPostScreen' component={NewPostScreen} />
@@ -51,7 +51,7 @@ export const SignedInStack = () => {
         <Stack.Screen name='SettingsScreen' component={SettingsScreen}/>
         <Stack.Screen name='RoomScreen' component={RoomScreen}/>
       </Stack.Navigator>
-      <BottomTabs icons={bottomTabIcons} />
+      {/* <BottomTabs icons={bottomTabIcons} /> */}
       
     </NavigationContainer>
   );
