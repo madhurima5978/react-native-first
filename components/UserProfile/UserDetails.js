@@ -1,5 +1,8 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, Image, StyleSheet, Button, Alert, TouchableOpacity  } from 'react-native'
+import React, { useState } from 'react'
+
+import ImagePickerExample from './updateProfilePic';
+
 const UserDetails = ({ users }) => {
     return (
       <View style={styles.container}>
@@ -16,9 +19,14 @@ const UserDetails = ({ users }) => {
           <Text style={styles.postcount}>{users.events_participated}</Text>
           <Text style={styles.postsText}>Participated</Text>
         </View>
+        
       </View>
     );
   };
+  
+
+
+
   
   const styles = StyleSheet.create({
     pfp: {

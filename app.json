@@ -5,12 +5,22 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "plugins": ["@config-plugins/react-native-webrtc"],
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "plugins": [
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos to let you share them with your friends."
+          }
+        ]
+      ]
     },
+    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -27,6 +37,8 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    
+    
     "extra": {
       "eas": {
         "projectId": "e6a2f684-9ca4-417a-b2c6-fbaa87c86338"

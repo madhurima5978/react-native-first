@@ -88,7 +88,7 @@ const PostHeader = ({ post }) => {
     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
       <Image source={{uri: post.profile_picture}} style={styles.pfp} />
       <Text style={{marginLeft: 5, fontWeight: '700'}}>
-        {post.user}</Text>
+        {post.username}</Text>
 
     </View>
     <Text style={{fontWeight: '900', justifyContent: 'space-between', width:'6%'}}>...</Text>
